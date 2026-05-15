@@ -1,6 +1,7 @@
 
-import { Box, Container, Grid, Paper, Typography, TextField, IconButton } from "@mui/material";
+import { Box, Container, Paper, Typography, TextField, IconButton } from "@mui/material";
 import { Send } from "@mui/icons-material";
+import DisqusComments from "../components/DisqusComments";
 
 const Dashboard = () => {
   return (
@@ -36,8 +37,16 @@ const Dashboard = () => {
         <Typography variant="h4" component="h2" gutterBottom align="center" sx={{ fontWeight: 'bold', mb: 4 }}>
           Pricing
         </Typography>
-        <Grid container spacing={4} justifyContent="center" >
-          <Grid item xs={12} sm={6}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            gap: 4,
+            justifyContent: 'center',
+            alignItems: 'stretch'
+          }}
+        >
+          <Box sx={{ flex: 1, minWidth: 0 }}>
             <Paper elevation={3} sx={{ p: 3, borderRadius: "16px", height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <Box>
                 <Typography variant="h5" component="h3" gutterBottom align="center">
@@ -52,8 +61,8 @@ const Dashboard = () => {
                 <Typography variant="body2" align="center">7.5 SGD/year</Typography>
               </Box>
             </Paper>
-          </Grid>
-          <Grid item xs={12} sm={6}>
+          </Box>
+          <Box sx={{ flex: 1, minWidth: 0 }}>
             <Paper elevation={3} sx={{ p: 3, borderRadius: "16px", height: '100%' }}>
               <Typography variant="h5" component="h3" gutterBottom align="center">
                 Family
@@ -64,8 +73,12 @@ const Dashboard = () => {
               <Typography variant="body1" align="center">5 SGD/month</Typography>
               <Typography variant="body1" align="center">30 SGD/year</Typography>
             </Paper>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
+      </Box>
+
+      <Box sx={{ mt: 8 }}>
+        <DisqusComments />
       </Box>
     </Container>
   );
