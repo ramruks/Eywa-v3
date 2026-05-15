@@ -1,34 +1,27 @@
-import { useEffect } from 'react';
+import { DiscussionEmbed } from 'disqus-react';
+import { useLocation } from 'react-router-dom';
+import { Box } from '@mui/material';
 
-declare global {
-  interface Window {
-    disqus_config: () => void;
-  }
+interface DisqusCommentsProps {
+  shortname?: string;
 }
 
-const DisqusComments = () => {
-  useEffect(() => {
-    window.disqus_config = function () {
-      this.page.url = window.location.href;
-      this.page.identifier = window.location.pathname;
-    };
+const DisqusComments = ({ shortname = 'ambientweather-disqus-com' }: DisqusCommentsProps) => {
+  const location = useLocation();
 
-    const script = document.createElement('script');
-    script.src = 'https://ambientweather.disqus.com/embed.js';
-    script.setAttribute('data-timestamp', Date.now().toString());
-    script.setAttribute('crossorigin', 'anonymous');
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-      // Clean up Disqus variables to prevent issues on re-mount
-      delete window.DISQUS;
-    };
-  }, []);
+  const disqusConfig = {
+    url: window.location.href,
+    identifier: location.pathname,
+    title: document.title,
+  };
 
   return (
-    <div id="disqus_thread" style={{ marginTop: '3rem', padding: '1rem', background: '#f5f5f5', borderRadius: '8px' }} />
+    <Box sx={{ mt: 6, p: 2, bgcolor: 'background.paper', borderRadius: 2, boxShadow: 1 }}>
+      <DiscussionEmbed
+        shortname={shortname}
+        config={disqusConfig}
+      />
+    </Box>
   );
 };
 
