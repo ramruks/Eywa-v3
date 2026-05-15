@@ -12,7 +12,7 @@ const Dashboard = () => {
         Your Family's central consciousness
       </Typography>
 
-      <Box mt={6} sx={{width: '100%'}}>
+      <Box sx={{width: '100%', mt: 6}}>
         <Paper elevation={3} sx={{ p: 3, borderRadius: "16px" }}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <TextField
